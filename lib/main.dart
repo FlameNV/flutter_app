@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
+import 'package:flutter_app/pages/profile.dart';
 
 void main() => runApp(MyApp());
 
@@ -13,7 +14,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.white,
       ),
-      home: RandomWords(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => RandomWords(),
+        '/profile': (context) => Profile(),
+      },
     );
   }
 }
@@ -65,6 +70,9 @@ class _RandomWordsState extends State<RandomWords> {
       appBar: AppBar(
         title: const Text('Startup Name Generator'),
         actions: [
+          IconButton(onPressed: () {
+            Navigator.pushNamed(context, '/profile');
+          }, icon: Icon(Icons.person)),
           IconButton(onPressed: _pushSaved, icon: Icon(Icons.list)),
         ],
       ),
